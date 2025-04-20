@@ -1,0 +1,121 @@
+*{
+    margin:0;
+    padding:0;
+}
+#heading{
+    height:60px;
+    color:rgb(18, 18, 122);
+    font-size:54px;
+    font-weight:bold;
+    text-align:center;
+    animation:move 1.5s linear;
+}
+@keyframes move{
+    from{
+        transform: translate(-100%);
+    }
+    to{
+        transform: translate(0%);
+    }
+}
+#heading1{
+    height:60px;
+    color:rgb(18, 18, 122);
+    font-size:54px;
+    width:100%;
+    font-weight:bold;
+    text-align:center;
+    animation:move 1.5s linear;
+}
+@keyframes move{
+    from{
+        transform: translate(-100%);
+    }
+    to{
+        transform: translate(0%);
+    }
+}
+.msg-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:785px;
+   
+}
+#msg{
+    font-weight:bold;
+    font-size:40px;
+    color:rgb(14, 136, 79);
+}
+#new-game{
+    background-color:rgb(44, 25, 155);
+    margin-top:15px;
+    color:rgba(23, 190, 199, 0.9);
+    font-size:19px;
+    padding:5px;
+    height:45px;
+    width:8rem;
+    font-weight:bold;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.container{
+    margin-top:5px;
+    height:560px;
+   width:100%;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+}
+.game{
+    height:500px;
+    display:grid;
+    grid-template-columns: repeat(3,170px);
+    grid-template-rows: repeat(3,170px);
+    row-gap:10px;
+    column-gap: 10px;
+}
+.box{
+    border-top-right-radius:20px;
+    border-top-left-radius:20px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;
+    background-color:brown;
+   border:3px solid red;
+   box-shadow: 10px 10px 10px rgb(36, 43, 36);
+   font-size:120px;
+   font-weight:bold;
+   color:rgb(137, 161, 14);
+   text-align:center;
+}
+#reset-game{
+    background-color:rgba(18, 133, 31, 0.892);
+   margin-top:25px;
+    color:rgba(23, 190, 199, 0.9);
+    font-size:19px;
+    padding:5px;
+    height:45px;
+    width:10rem;
+    font-weight:bold;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.hide{
+    display:none;
+}
