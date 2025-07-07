@@ -7,6 +7,13 @@ let message=document.querySelector(".msg-container");
 let playGame1=document.querySelector(".Game1");
 let playGame2=document.querySelector(".Game2");
 let last=document.querySelector(".play");
+let extra=document.querySelector("#extra");
+let backgroungMusic=document.querySelector("#bg-music");
+let MouseMusic=document.querySelector("#mouse-click");
+let buttonClick=document.querySelector("#button-click");
+let winSound=document.querySelector("#win");
+
+console.log(winSound)
 let turnO=true;
  
 const winpattern=[
@@ -25,23 +32,41 @@ const winpattern=[
  let Game2=false;
 
 
-const generateComputer=(n)=>{
-    let array=[0,1,2,3,4,5,6,7,8];
+let array=[0,1,2,3,4,5,6,7,8];
+
+
+const generateArray=(n)=>{
    let index=array.indexOf(n);
-    array.splice(index,1);
-    let random=Math.floor(Math.random()*array.length);
-      return array[random];   
+   array.splice(index,1);
+   return array;
 }
 
 
 const reset=() =>{
     turnO =true;
     enablebox();
- message.classList.add("hide");
+    array=[0,1,2,3,4,5,6,7,8];
+    message.classList.add("hide");
+    buttonClick.play();
+      setTimeout(() => {
+        buttonClick.pause();            // Pause after 3 seconds
+         buttonClick.currentTime = 0;    // Reset to beginning (optional)
+          }, 1000);
+     backgroungMusic.pause();
+     backgroungMusic.currentTime=0;
+     backgroungMusic.play();
 };
 
 
   playGame1.addEventListener('click',()=>{
+    buttonClick.play();
+      setTimeout(() => {
+        buttonClick.pause();            // Pause after 3 seconds
+         buttonClick.currentTime = 0;    // Reset to beginning (optional)
+          }, 1000);
+     backgroungMusic.pause();
+     backgroungMusic.currentTime=0;
+     backgroungMusic.play();
        Game1=true;
        message.classList.add("hide");
        last.classList.add("hide");
@@ -52,6 +77,15 @@ const reset=() =>{
 
 
  playGame2.addEventListener('click',()=>{
+    buttonClick.play();
+      setTimeout(() => {
+        buttonClick.pause();            // Pause after 3 seconds
+         buttonClick.currentTime = 0;    // Reset to beginning (optional)
+          }, 1000);
+     backgroungMusic.pause();
+     backgroungMusic.currentTime=0;
+     backgroungMusic.play();
+     Game1=false;
       Game2=true;
        message.classList.add("hide");
         last.classList.add("hide");
@@ -62,35 +96,45 @@ const reset=() =>{
 
 
    boxes.forEach((box) =>{
+   
    box.addEventListener("click", () =>{
-   let nums= box.getAttribute("id");
-  //console.log(typeof(nums));
-   if(Game1){
-     if(turnO){
-            box.innerText="O";
-            turnO=false;
-             //let ind=generateComputer(nums);
-             //const str = ind.toString();
-             // console.log(typeof(str));
-             //  console.log(str);
-              let element=document.getElementById("generateComputer(nums)");
-              console.log(element);
-              element.innerText="X";
-              turnO=true;
-        }
-   }
-   else if(Game2){
-      if(turnO){
-            box.innerText="O";
-            turnO=false;
-        }
-        else{
+      MouseMusic.play();
+      setTimeout(() => {
+        MouseMusic.pause();            // Pause after 3 seconds
+         MouseMusic.currentTime = 0;    // Reset to beginning (optional)
+          }, 500);
+            let nums= box.getAttribute("id");
+            if(Game1){
+            if(turnO){
+             box.innerText="O";
+             turnO=false;
+              // box.getAttribute("id")---> Give string
+                  let number=Number(nums)
+             array=generateArray(number);
+             let ind=array[Math.floor(Math.random()*array.length)];
+             const str = ind.toString();
+              let element=document.getElementById(str);
+               element.innerText="X";
+               element.disabled=true;
+               checkwinner();
+                turnO=true;
+               array=generateArray(ind);
+             }
+               box.disabled=true;
+           }
+
+             else if(Game2){
+               if(turnO){
+              box.innerText="O";
+              turnO=false;
+             }
+             else{
              box.innerText="X";
-            turnO = true;
+             turnO = true;
         }
+              box.disabled=true;
+              checkwinner();
    }
-       box.disabled=true;
-        checkwinner();
    });
    });
        
@@ -112,13 +156,14 @@ const enablebox=() =>{
 
 
 const showWinner=(winner) =>{
-    mesline.innerText=`Congratulations , Winner is ${winner}`;
-    console.log("congratulations")
-    message.classList.remove("hide");
-    container.classList.add("hide");
-   last.classList.add("hide");
-    newgame.innerText="New Game";
-    disablebox();
+    backgroungMusic.pause();
+    winSound.play();
+       mesline.innerText=`Congratulations , Winner is ${winner}`;
+      message.classList.remove("hide");
+     container.classList.add("hide");
+      last.classList.add("hide");
+      newgame.innerText="New Game";
+       disablebox();
 };
 
 
@@ -131,15 +176,52 @@ const checkwinner=()=>{
         if(posF===posS && posS===posT) {
         showWinner(posF);
     }
+    else if(array.length===0){
+        backgroungMusic.pause();
+        buttonClick.play();
+        mesline.innerText=`Ooh! Game was draw! Try Again`;
+            message.classList.remove("hide");
+            container.classList.add("hide");
+            last.classList.add("hide");
+            newgame.innerText="New Game";
+            disablebox();
+    }
 }
 }
 };
 
-
-newgame.addEventListener("click",()=>{
+const Newgame=()=>{
      message.classList.add("hide");
- container.classList.add("hide");
-});
+     container.classList.add("hide");
+     array=[0,1,2,3,4,5,6,7,8];
+      buttonClick.play();
+      setTimeout(() => {
+        buttonClick.pause();           
+       buttonClick.currentTime = 0;  
+        }, 1000);
+        if(backgroungMusic.play()){
+           backgroungMusic.pause();
+        backgroungMusic.currentTime=0;  
+        }
+        if(winSound.play()){
+         winSound.pause();
+        winSound.currentTime=0;
+        }
+       
+}
+
+/*const stop=()=>{
+    winSound.pause();
+    winSound.currentTime=0;
+    backgroungMusic.pause();
+    backgroungMusic.currentTime=0;
+    MouseMusic.pause();
+    MouseMusic.currentTime=0;
+    buttonClick.pause();
+    buttonClick.currentTime=0;
+}*/
 
 
+newgame.addEventListener("click",Newgame);
+extra.addEventListener("click",Newgame);
 resetgame.addEventListener("click",reset);
