@@ -1,7 +1,8 @@
 *{
     margin:0;
     padding:0;
-    overflow-y:hidden
+   overflow-y: hidden;
+   
 }
 #heading{
     height:60px;
@@ -48,7 +49,14 @@
 #msg{
     font-weight:bold;
     font-size:40px;
-    color:rgb(14, 136, 79);
+    color:rgb(234, 204, 33);
+    padding:7px;
+    margin:6px;
+    width:100%;
+    display:flex;
+   justify-content:center;
+   align-items:center;
+
 }
 #new-game{
     background-color:rgb(44, 25, 155);
@@ -91,17 +99,16 @@
     border-bottom-left-radius:20px;
     background-color:rgb(63, 2, 2);
    border:3px solid rgb(146, 20, 20);
-   box-shadow: 10px 10px 10px rgb(103, 108, 103);
+  box-shadow: 13px 13px 13px rgb(62, 65, 62);
    font-size:120px;
    font-weight:bold;
    margin-right: 18px;
    margin-bottom: 5.6px;
-   color:rgb(137, 161, 14);
    text-align:center;
 }
 #reset-game,#extra{
     background-color:rgba(18, 133, 31, 0.892);
-   margin-left: 20px;
+   margin-left: 17px;
     color:rgba(23, 190, 199, 0.9);
     font-size:19px;
     padding:5px;
@@ -110,7 +117,7 @@
     margin-top:-3px;
     font-weight:bold;
      border:none;
-    box-shadow: 8px 8px 8px rgb(116, 118, 116);
+   box-shadow: 10px 10px 10px rgb(62, 65, 62);
     border-top-right-radius:10px;
     border-top-left-radius:10px;
     border-bottom-right-radius:10px;
@@ -145,7 +152,7 @@
     font-size:26px;
     padding:5px;
     border:none;
-    box-shadow: 10px 10px 10px rgb(73, 78, 73);
+   box-shadow: 10px 10px 10px rgb(62, 65, 62);
     height:60px;
     width:25rem;
     font-weight:bold;
@@ -156,4 +163,35 @@
     display:flex;
     align-items:center;
     justify-content:center;
+}
+.bubbles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Behind game content */
+  pointer-events: none;
+  background: linear-gradient(to bottom, #001f3f, #0074D9); /* Optional background */
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  border-radius: 50%;
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.3);
+  animation: rise 10s linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
 }
