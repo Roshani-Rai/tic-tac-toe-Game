@@ -181,10 +181,16 @@ const showWinner=(winner) =>{
        mesline.innerText=`Oops ! You lose the match , Winner is ${winner}`;
      mesline.style.backgroundColor="rgb(227, 10, 13)";
     }
-    else{
-     mesline.innerText=`Congratulations ! You won the match , Winner is ${winner}`;
+    else {
+      if(winner==="O"){
+        mesline.innerText=`Congratulations ! Player1 won the match , Winner is ${winner}`;
+         mesline.style.backgroundColor="green";
+      }
+      else{
+     mesline.innerText=`Congratulations ! Player2 won the match , Winner is ${winner}`;
      mesline.style.backgroundColor="green";
     }
+  }
       message.classList.remove("hide");
      container.classList.add("hide");
       last.classList.add("hide");
@@ -266,7 +272,7 @@ const bubbleContainer = document.querySelector(".bubbles");
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.left = `${Math.random() * 100}%`;
-    bubble.style.animationDuration = `${Math.random() * 6 + 5}s`; // 5-10 seconds
+    bubble.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5-10 seconds
 
     bubbleContainer.appendChild(bubble);
 
